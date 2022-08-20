@@ -1,0 +1,42 @@
+from window import Window, Menu
+
+
+if __name__ == '__main__':
+    # wind = Window('505x610', '#0044aa', 'Ping-Pong')
+    # wind.create_window()
+    #wind.mainloop()
+    menu = Menu('505x610', '#0044aa', 'Ping-Pong')
+    menu.create_window()
+    menu.create_elements()
+    menu.mainloop()
+
+-----
+
+from tkinter import *
+
+
+class Window:
+    def __init__(self, size: str, background: str = '#ffffff', name: str = 'program'):
+        self.root = Tk()
+        self.size = size
+        self.background = background
+        self.name = name
+
+    def create_window(self):
+        self.root.geometry(self.size)
+        self.root.title(self.name)
+        canv = Canvas(self.root, bg=self.background)
+        canv.pack(fill=BOTH, expand=1)
+
+    def mainloop(self):
+        self.root.mainloop()
+
+
+class Menu(Window):
+    def create_elements(self):
+        label1 = Label(text="Hello Python", fg="#eee", bg="#333")
+        label1.pack()
+
+        poetry = "Вот мысль, которой весь я предан,\nИтог всего, что ум скопил.\nЛишь тот, кем бой за жизнь изведан,\nЖизнь и свободу заслужил."
+        label2 = Label(text=poetry, justify=LEFT)
+        label2.place(relx=.2, rely=.3)
